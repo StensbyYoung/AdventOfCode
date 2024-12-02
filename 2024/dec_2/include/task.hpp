@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 
 class Task
 {
@@ -9,5 +10,6 @@ class Task
     void RunTask1();
     void RunTask2();
 
-  private:   
+  private:
+    std::vector<std::vector<int>> m_Reports{};
 };
