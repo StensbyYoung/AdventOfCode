@@ -28,6 +28,8 @@ Task::Task()
 
 void Task::RunTask1()
 {
+  std::cout << "--- Running Task 1 ---" << std::endl;
+
   int totalDistance{};
 
   for (int i = 0; i < m_List1.size(); ++i)
@@ -40,6 +42,8 @@ void Task::RunTask1()
 
 void Task::RunTask2()
 {
+  std::cout << "--- Running Task 2 ---" << std::endl;
+
   int similarityScore{};
   int count{};
 
