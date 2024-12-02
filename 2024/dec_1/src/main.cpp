@@ -1,4 +1,4 @@
-#include "../include/task1.hpp"
+#include "../include/task.hpp"
 #include <iostream>
 
 int main()
@@ -6,8 +6,9 @@ int main()
   std::cout << "--- Running main ---" << std::endl;
 
   std::cout << "--- Running Task 1 ---" << std::endl;
-  Task1 task1{};
-  task1.RunTask();
+  Task task{};
+  task.RunTask1();
+  task.RunTask2();
 
   return 0;
 }
