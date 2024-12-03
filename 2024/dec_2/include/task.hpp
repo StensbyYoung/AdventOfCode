@@ -1,6 +1,19 @@
 #pragma once
 #include <vector>
 
+enum class Order_T
+{
+  Ascending,
+  Descending,
+  None
+};
+
+struct Report_T
+{
+  std::vector<int> Elements{};
+  Order_T          Order{Order_T::None};            
+};
+
 class Task
 {
   public:
@@ -11,5 +24,10 @@ class Task
     void RunTask2();
 
   private:
-    std::vector<std::vector<int>> m_Reports{};
+    void SetOrder(Report_T* report);
+    bool RemovalMadeSafe(Report_T& modifiedReport);
+
+    std::vector<Report_T> m_Reports{};
+    std::vector<Report_T> m_MarkedReports{};
+    int                   m_SafeReports{};
 };
