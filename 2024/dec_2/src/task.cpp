@@ -74,7 +74,7 @@ void Task::RunTask1()
 
     if (!unsafe)
     {
-      ++m_SafeReports;
+      ++m_NumSafeReports;
     }
     else
     {
@@ -82,7 +82,7 @@ void Task::RunTask1()
     }
   }
 
-  std::cout << "Number of safe reports: " << m_SafeReports << std::endl;
+  std::cout << "Number of safe reports: " << m_NumSafeReports << std::endl;
 }
 
 void Task::RunTask2()
@@ -117,13 +117,13 @@ void Task::RunTask2()
       }
       else
       {
-        ++m_SafeReports;
+        ++m_NumSafeReports;
         break;
       }
     }
   }
 
-  std::cout << "Number of safe reports: " << m_SafeReports << std::endl;
+  std::cout << "Number of safe reports: " << m_NumSafeReports << std::endl;
 }
 
 void Task::SetOrder(Report_T* report)

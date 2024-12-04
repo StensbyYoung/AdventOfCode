@@ -29,5 +29,5 @@ class Task
 
     std::vector<Report_T> m_Reports{};
     std::vector<Report_T> m_MarkedReports{};
-    int                   m_SafeReports{};
+    int                   m_NumSafeReports{};
 };
