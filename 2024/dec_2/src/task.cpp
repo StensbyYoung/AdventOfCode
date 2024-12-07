@@ -39,65 +39,25 @@ void Task::RunTask1()
 
   for (auto& report : m_Reports)
   {
-    bool unsafe{};
-    
-    for (int i = 0; i < report.Elements.size() - 1; ++i)
-    {
-      if (report.Elements[i] == report.Elements[i + 1])
-      {
-        unsafe = true;
-        report.Order = Order_T::None;
-      }
-
-      switch (report.Order)
-      {
-        case Order_T::Ascending:
-          if (((report.Elements[i + 1] - report.Elements[i]) > 3) ||
-               (report.Elements[i + 1] < report.Elements[i]))
-          {
-            unsafe = true;
-          }
-          break;
-        case Order_T::Descending:
-          if (((report.Elements[i] - report.Elements[i + 1]) > 3) ||
-               (report.Elements[i] < report.Elements[i + 1]))
-          {
-            unsafe = true;
-          }
-          break;
-        case Order_T::None:
-          [[fallthrough]];
-        default:
-          break; 
-      }
-    }
-
-    if (!unsafe)
-    {
-      ++m_NumSafeReports;
-    }
-    else
+    if (IsReportUnsafe(report))
     {
       m_MarkedReports.push_back(report);
     }
+    else
+    {
+      ++m_NumSafe;
+    }
   }
 
-  std::cout << "Number of safe reports: " << m_NumSafeReports << std::endl;
+  std::cout << "--- Number of safe reports: " << m_NumSafe << std::endl;
 }
 
 void Task::RunTask2()
 {
   std::cout << "--- Running Task 2 ---" << std::endl;
 
-  std::cout << "Marked Reports: " << std::endl;
   for (auto& report : m_MarkedReports)
   {
-    for (auto& element : report.Elements)
-    {
-      std::cout << element;
-    }
-    std::cout << std::endl;
-
     int index{};
     while (index < report.Elements.size())
     {
@@ -111,19 +71,19 @@ void Task::RunTask2()
         }
       }
 
-      if (!RemovalMadeSafe(tempReport))
+      if (IsReportUnsafe(tempReport))
       {
         ++index;
       }
       else
       {
-        ++m_NumSafeReports;
+        ++m_NumSafeAfterModify;
         break;
       }
     }
   }
 
-  std::cout << "Number of safe reports: " << m_NumSafeReports << std::endl;
+  std::cout << "--- Number of safe reports (allowing modification): " << m_NumSafe + m_NumSafeAfterModify << std::endl;
 }
 
 void Task::SetOrder(Report_T* report)
@@ -142,7 +102,7 @@ void Task::SetOrder(Report_T* report)
   }
 }
 
-bool Task::RemovalMadeSafe(Report_T& modifiedReport)
+bool Task::IsReportUnsafe(Report_T& modifiedReport)
 {
   bool unsafe{};
   SetOrder(&modifiedReport);
@@ -178,5 +138,5 @@ bool Task::RemovalMadeSafe(Report_T& modifiedReport)
     }
   }
   
-  return !unsafe;
+  return unsafe;
 }

@@ -25,9 +25,10 @@ class Task
 
   private:
     void SetOrder(Report_T* report);
-    bool RemovalMadeSafe(Report_T& modifiedReport);
+    bool IsReportUnsafe(Report_T& modifiedReport);
 
     std::vector<Report_T> m_Reports{};
     std::vector<Report_T> m_MarkedReports{};
-    int                   m_NumSafeReports{};
+    int                   m_NumSafe{};
+    int                   m_NumSafeAfterModify{};
 };
