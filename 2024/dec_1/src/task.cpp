@@ -1,8 +1,4 @@
 #include "../include/task.hpp"
-#include <filesystem>
-#include <iostream>
-#include <fstream>
-#include <algorithm>
 
 Task::Task()
 {

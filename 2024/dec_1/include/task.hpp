@@ -1,5 +1,9 @@
 #pragma once
 #include <vector>
+#include <filesystem>
+#include <iostream>
+#include <fstream>
+#include <algorithm>
 
 class Task
 {
